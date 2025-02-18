@@ -6,7 +6,8 @@ export default function Signup() {
         ConfirmPass :'',
         Name :'',
         Number :'',
-        Role :''
+        Role :'',
+        message :''
       });
 
     const [didEdit , setDidEdit] = useState({
@@ -14,13 +15,14 @@ export default function Signup() {
         Password : false,
         Name : false,
         Number : false,
-        Role : false
+        Role : false,
+        message : false
     })
 
     const emailInvalid = didEdit.Email && !enteredValues.Email.includes('@');
     const passInvalid = didEdit.Password && (enteredValues.Password.length) <6;
     const passCheck =didEdit.ConfirmPass && !(enteredValues.Password === enteredValues.ConfirmPass);
-    const invalidNumber = didEdit.Number && enteredValues.Number.length <10;
+    const invalidNumber = didEdit.Number && (enteredValues.Number.length <10);
 
     function handleSubmit(event){
         event.preventDefault();
@@ -29,6 +31,7 @@ export default function Signup() {
         console.log("Password : " + enteredValues.Password);
         console.log("Name : " + enteredValues.Name);
         console.log("Phone Number : " + enteredValues.Number);
+        console.log("Message : " + enteredValues.message);
         
     }
 
@@ -113,7 +116,10 @@ export default function Signup() {
             <option value="other">Other</option>
           </select>
         </div>
-  
+        <div className="control">
+            <label htmlFor="message">Message</label>
+            <textarea onBlur={()=> handleInputBlur('message')} onChange={(event)=>{handleInputChange('message',event.target.value)}} type="text" id="message" name="message" />
+        </div>
         <div className="control">
           <label htmlFor="terms-and-conditions">
             <input type="checkbox" id="terms-and-conditions" name="terms" />I
