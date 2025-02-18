@@ -20,15 +20,16 @@ export default function Signup() {
     const emailInvalid = didEdit.Email && !enteredValues.Email.includes('@');
     const passInvalid = didEdit.Password && (enteredValues.Password.length) <6;
     const passCheck =didEdit.ConfirmPass && !(enteredValues.Password === enteredValues.ConfirmPass);
+    const invalidNumber = didEdit.Number && enteredValues.Number.length <10;
 
     function handleSubmit(event){
         event.preventDefault();
-        // const fd = new FormData(event.target);
-        // console.log(fd.get(email));
+
         console.log("Email : "+ enteredValues.Email);
         console.log("Password : " + enteredValues.Password);
         console.log("Name : " + enteredValues.Name);
         console.log("Phone Number : " + enteredValues.Number);
+        
     }
 
     function handleInputChange(identifier , value){
@@ -46,6 +47,10 @@ export default function Signup() {
     }
     return (
       <form onSubmit={handleSubmit}>
+        <h2> About eTechnoLab : </h2>
+        <p> eTechno Lab is a Software Services company, provides IT solutions to our clients with our core values Collaborative spirit, Integrity, and Serenity.
+        Being a top-notch Custom software development company, our services are designed to take your business to the next level, reducing the gap between you and the heights of success you wish to achieve.
+        </p>
         <h2>Welcome on board!</h2>
         <p>We just need a little bit of data from you to get you started 🚀</p>
   
@@ -91,7 +96,10 @@ export default function Signup() {
   
           <div className="control">
             <label htmlFor="Number"> Phone Number </label>
-            <input onChange={(event)=>{handleInputChange('Number',event.target.value)}} type="number" id="number" name="number" />
+            <input onBlur={()=> handleInputBlur('Number')} onChange={(event)=>{handleInputChange('Number',event.target.value)}} type="number" id="number" name="number" />
+            <div className="control-error">
+                {invalidNumber && <p>Enter valid 10 digit Number.</p>}
+            </div>
           </div>
         </div>
   
@@ -105,34 +113,6 @@ export default function Signup() {
             <option value="other">Other</option>
           </select>
         </div>
-  
-        {/* <fieldset>
-          <legend>How did you find us?</legend>
-          <div className="control">
-            <input
-              type="checkbox"
-              id="google"
-              name="acquisition"
-              value="google"
-            />
-            <label htmlFor="google">Google</label>
-          </div>
-  
-          <div className="control">
-            <input
-              type="checkbox"
-              id="friend"
-              name="acquisition"
-              value="friend"
-            />
-            <label htmlFor="friend">Referred by friend</label>
-          </div>
-  
-          <div className="control">
-            <input type="checkbox" id="other" name="acquisition" value="other" />
-            <label htmlFor="other">Other</label>
-          </div>
-        </fieldset> */}
   
         <div className="control">
           <label htmlFor="terms-and-conditions">
