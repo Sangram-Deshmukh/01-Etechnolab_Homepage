@@ -19,6 +19,12 @@ header {
   text-align: center;
 }
 
+.background {
+  background-image: url(/src/assets/BackgroundImg.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
 header img {
   width: 25rem;
   height: 5rem;
@@ -34,7 +40,7 @@ header h1 {
   font-size: 3rem;
   margin: 1rem 0;
   letter-spacing: 0.2rem;
-  color: #2f4444;
+  color: #141616;
 }
 
 form {
